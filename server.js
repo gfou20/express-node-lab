@@ -1,13 +1,19 @@
 import express  from "express"
 
+import { students } from "./data/student-data.js"
+
 const app = express()
 
+app.set('view engine', 'ejs')
+
 app.get('/', function(req, res) {
-  res.send('<h1>Howdy!</h1>')
+  res.redirect('/students')
 })
 
 app.get('/students', function(req, res) {
-  res.send('<h1>Best Students Ever!</h1>')
+  res.render('students/index', {
+    students: students
+  })
 })
 
 app.get('/test', function(req, res) {
